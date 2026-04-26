@@ -12,11 +12,12 @@ interface Props {
 }
 
 const headerGradients: Record<DayType, string> = {
-  DISNEY:    'from-blue-600/20    to-transparent',
-  UNIVERSAL: 'from-orange-600/20  to-transparent',
-  REST:      'from-emerald-600/20 to-transparent',
-  SHOPPING:  'from-fuchsia-600/20 to-transparent',
-  MIXED:     'from-violet-600/20  to-transparent',
+  DISNEY:     'from-blue-600/20    to-transparent',
+  UNIVERSAL:  'from-orange-600/20  to-transparent',
+  REST:       'from-emerald-600/20 to-transparent',
+  SHOPPING:   'from-fuchsia-600/20 to-transparent',
+  MIXED:      'from-violet-600/20  to-transparent',
+  OTHER_PARK: 'from-teal-600/20    to-transparent',
 };
 
 export default async function TripDayDetailPage({ params }: Props) {
@@ -75,7 +76,7 @@ export default async function TripDayDetailPage({ params }: Props) {
               {dayData.locationLabel || 'Sin ubicación'}
             </p>
           </div>
-          <DayTypeBadge type={dayData.dayType} className="text-sm px-4 py-1.5 self-start" />
+          <DayTypeBadge type={dayData.dayType} locationLabel={dayData.locationLabel} className="text-sm px-4 py-1.5 self-start" />
         </div>
 
         {/* Pass recommendation */}

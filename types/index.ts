@@ -1,4 +1,4 @@
-export type DayType = 'DISNEY' | 'UNIVERSAL' | 'REST' | 'SHOPPING' | 'MIXED';
+export type DayType = 'DISNEY' | 'UNIVERSAL' | 'REST' | 'SHOPPING' | 'MIXED' | 'OTHER_PARK';
 export type ActivityType = 'RIDE' | 'SHOW' | 'FOOD' | 'SHOPPING' | 'EXPERIENCE';
 
 export interface CalendarDay {

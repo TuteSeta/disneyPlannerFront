@@ -11,11 +11,12 @@ interface TripCalendarProps {
 // ── Config ────────────────────────────────────────────────────────────────────
 
 const dayTypeConfig: Record<DayType, { bg: string; text: string; ring: string; label: string }> = {
-  DISNEY:    { bg: 'bg-blue-500',    text: 'text-white', ring: 'ring-blue-400',    label: 'Disney' },
-  UNIVERSAL: { bg: 'bg-orange-500',  text: 'text-white', ring: 'ring-orange-400',  label: 'Universal' },
-  REST:      { bg: 'bg-emerald-500', text: 'text-white', ring: 'ring-emerald-400', label: 'Descanso' },
-  SHOPPING:  { bg: 'bg-fuchsia-500', text: 'text-white', ring: 'ring-fuchsia-400', label: 'Shopping' },
-  MIXED:     { bg: 'bg-violet-500',  text: 'text-white', ring: 'ring-violet-400',  label: 'Mixto' },
+  DISNEY:     { bg: 'bg-blue-500',    text: 'text-white', ring: 'ring-blue-400',    label: 'Disney' },
+  UNIVERSAL:  { bg: 'bg-orange-500',  text: 'text-white', ring: 'ring-orange-400',  label: 'Universal' },
+  REST:       { bg: 'bg-emerald-500', text: 'text-white', ring: 'ring-emerald-400', label: 'Descanso' },
+  SHOPPING:   { bg: 'bg-fuchsia-500', text: 'text-white', ring: 'ring-fuchsia-400', label: 'Shopping' },
+  MIXED:      { bg: 'bg-violet-500',  text: 'text-white', ring: 'ring-violet-400',  label: 'Mixto' },
+  OTHER_PARK: { bg: 'bg-teal-500',    text: 'text-white', ring: 'ring-teal-400',    label: 'Otro parque' },
 };
 
 const MONTH_NAMES = [
@@ -124,7 +125,8 @@ export function TripCalendar({ trip }: TripCalendarProps) {
                     );
                   }
 
-                  const cfg = dayTypeConfig[tripDay.dayType];
+                  const normalizedType = (tripDay.dayType || '').toUpperCase() as DayType;
+                  const cfg = dayTypeConfig[normalizedType] || { bg: 'bg-gray-800', text: 'text-white', ring: 'ring-gray-700', label: tripDay.dayType || '?' };
 
                   return (
                     <motion.div
@@ -140,7 +142,7 @@ export function TripCalendar({ trip }: TripCalendarProps) {
                       >
                         <span className="font-bold text-sm leading-none">{day}</span>
                         <span className="text-[9px] mt-0.5 opacity-70 hidden sm:block font-medium">
-                          {cfg.label}
+                          {normalizedType === 'OTHER_PARK' ? (tripDay.locationLabel ?? cfg.label) : cfg.label}
                         </span>
                         {tripDay.passRecommendation && (
                           <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full bg-amber-400 shadow-sm shadow-amber-400/50" />

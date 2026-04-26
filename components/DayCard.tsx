@@ -16,7 +16,7 @@ export function DayCard({ day, tripId }: DayCardProps) {
     >
       <div className="flex justify-between items-start mb-2">
         <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Día {day.dayNumber}</span>
-        <DayTypeBadge type={day.dayType} />
+        <DayTypeBadge type={day.dayType} locationLabel={day.locationLabel} />
       </div>
 
       <p className="text-sm font-semibold text-slate-700 mb-1">{formatDate(day.date)}</p>
