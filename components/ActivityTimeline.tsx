@@ -43,7 +43,7 @@ export function ActivityTimeline({ activities }: { activities: Activity[] }) {
       className="space-y-0"
     >
       {activities.map((activity, idx) => {
-        const cfg = activityConfig[activity.type] ?? DEFAULT_CFG;
+        const cfg = activityConfig[activity.activityType] ?? DEFAULT_CFG;
         const { Icon } = cfg;
         const isLast = idx === activities.length - 1;
 
@@ -63,14 +63,14 @@ export function ActivityTimeline({ activities }: { activities: Activity[] }) {
             <div className="flex-1 pb-7">
               <div className="flex items-start justify-between gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 hover:bg-white/[0.05] transition-colors">
                 <div className="flex-1 min-w-0">
-                  <p className={`text-xs font-bold font-mono mb-1 ${cfg.color}`}>{activity.time}</p>
+                  <p className={`text-xs font-bold font-mono mb-1 ${cfg.color}`}>{activity.startTime ?? '—'}</p>
                   <p className="text-white/90 font-semibold text-sm leading-snug">{activity.name}</p>
                   {activity.notes && (
                     <p className="text-white/35 text-xs mt-1.5 leading-relaxed">{activity.notes}</p>
                   )}
                 </div>
                 <span className={`flex-shrink-0 mt-0.5 text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full border ${cfg.bg} ${cfg.color}`}>
-                  {activity.type}
+                  {activity.activityType}
                 </span>
               </div>
             </div>

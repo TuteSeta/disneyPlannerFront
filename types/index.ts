@@ -1,38 +1,50 @@
-export type DayType = 'DISNEY' | 'UNIVERSAL' | 'REST' | 'SHOPPING' | 'MIXED' | 'OTHER_PARK';
+export type DayType = 'THEME_PARK' | 'SHOPPING' | 'REST' | 'MIXED' | 'SIGHTSEEING';
 export type ActivityType = 'RIDE' | 'SHOW' | 'FOOD' | 'SHOPPING' | 'EXPERIENCE';
 
-export interface CalendarDay {
-  dayNumber: number;
-  date: string;
-  dayType: DayType;
-  locationLabel: string | null;
-  passRecommendation: string | null;
-  totalActivities: number;
-}
-
-export interface CalendarSummary {
-  tripId: number;
+export interface Traveler {
+  id: number;
   name: string;
-  startDate: string;
-  endDate: string;
-  travelers: string[];
-  days: CalendarDay[];
+  age: number | null;
+  notes: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Activity {
-  time: string;
+  id: number;
   name: string;
-  type: ActivityType | string;
+  activityType: ActivityType;
+  startTime: string | null;   // "HH:MM" — puede ser null
+  endTime: string | null;
+  sortOrder: number;
+  priority: number;
   notes: string | null;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export interface DayDetail {
+export interface TripDay {
+  id: number;
   dayNumber: number;
   date: string;
   dayType: DayType;
   locationLabel: string | null;
   passRecommendation: string | null;
-  activities: Activity[];
+  createdAt: string;
+  updatedAt: string;
+  activities: Activity[];    // calendar endpoint devuelve actividades aplanadas
+}
+
+export interface Trip {
+  id: number;                 // era tripId en CalendarSummary
+  name: string;
+  startDate: string;
+  endDate: string;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+  travelers: Traveler[];      // era string[] en CalendarSummary
+  days: TripDay[];
 }
 
 export interface TripSummary {

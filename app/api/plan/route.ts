@@ -15,7 +15,10 @@ export async function POST(req: NextRequest) {
   try {
     const upstream = await fetch(`${BACKEND}/plan`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.API_KEY ?? '',
+      },
       body: JSON.stringify(body),
       signal: controller.signal,
     });

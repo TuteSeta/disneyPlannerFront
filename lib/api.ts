@@ -1,18 +1,29 @@
-import { CalendarSummary, DayDetail, TripSummary } from '../types';
+import { Trip, TripDay, TripSummary } from '../types';
 
 // For Server Components
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+const API_KEY = process.env.API_KEY ?? '';
 
-export async function getTripSummaryServer(id: string): Promise<CalendarSummary> {
-  const res = await fetch(`${API_URL}/trips/${id}/calendar`, { cache: 'no-store' });
+function authHeaders() {
+  return { 'x-api-key': API_KEY };
+}
+
+export async function getTripSummaryServer(id: string): Promise<Trip> {
+  const res = await fetch(`${API_URL}/trips/${id}/calendar`, {
+    cache: 'no-store',
+    headers: authHeaders(),
+  });
   if (!res.ok) {
     throw new Error(`Error fetching trip summary: ${res.statusText}`);
   }
   return res.json();
 }
 
-export async function getTripDayDetailServer(id: string, dayNumber: string): Promise<DayDetail> {
-  const res = await fetch(`${API_URL}/trips/${id}/calendar/${dayNumber}`, { cache: 'no-store' });
+export async function getTripDayDetailServer(id: string, dayNumber: string): Promise<TripDay> {
+  const res = await fetch(`${API_URL}/trips/${id}/calendar/${dayNumber}`, {
+    cache: 'no-store',
+    headers: authHeaders(),
+  });
   if (!res.ok) {
     throw new Error(`Error fetching day detail: ${res.statusText}`);
   }
@@ -20,7 +31,10 @@ export async function getTripDayDetailServer(id: string, dayNumber: string): Pro
 }
 
 export async function getTripsServer(): Promise<TripSummary[]> {
-  const res = await fetch(`${API_URL}/trips`, { cache: 'no-store' });
+  const res = await fetch(`${API_URL}/trips`, {
+    cache: 'no-store',
+    headers: authHeaders(),
+  });
   if (!res.ok) {
     throw new Error(`Error fetching trips: ${res.statusText}`);
   }

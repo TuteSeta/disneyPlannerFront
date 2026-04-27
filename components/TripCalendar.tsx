@@ -2,21 +2,20 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { CalendarSummary, CalendarDay, DayType } from '../types';
+import { Trip, TripDay, DayType } from '../types';
 
 interface TripCalendarProps {
-  trip: CalendarSummary;
+  trip: Trip;
 }
 
 // ── Config ────────────────────────────────────────────────────────────────────
 
 const dayTypeConfig: Record<DayType, { bg: string; text: string; ring: string; label: string }> = {
-  DISNEY:     { bg: 'bg-blue-500',    text: 'text-white', ring: 'ring-blue-400',    label: 'Disney' },
-  UNIVERSAL:  { bg: 'bg-orange-500',  text: 'text-white', ring: 'ring-orange-400',  label: 'Universal' },
-  REST:       { bg: 'bg-emerald-500', text: 'text-white', ring: 'ring-emerald-400', label: 'Descanso' },
-  SHOPPING:   { bg: 'bg-fuchsia-500', text: 'text-white', ring: 'ring-fuchsia-400', label: 'Shopping' },
-  MIXED:      { bg: 'bg-violet-500',  text: 'text-white', ring: 'ring-violet-400',  label: 'Mixto' },
-  OTHER_PARK: { bg: 'bg-teal-500',    text: 'text-white', ring: 'ring-teal-400',    label: 'Otro parque' },
+  THEME_PARK:  { bg: 'bg-blue-500',    text: 'text-white', ring: 'ring-blue-400',    label: 'Parque Temático' },
+  SIGHTSEEING: { bg: 'bg-teal-500',    text: 'text-white', ring: 'ring-teal-400',    label: 'Turismo' },
+  REST:        { bg: 'bg-emerald-500', text: 'text-white', ring: 'ring-emerald-400', label: 'Descanso' },
+  SHOPPING:    { bg: 'bg-fuchsia-500', text: 'text-white', ring: 'ring-fuchsia-400', label: 'Shopping' },
+  MIXED:       { bg: 'bg-violet-500',  text: 'text-white', ring: 'ring-violet-400',  label: 'Mixto' },
 };
 
 const MONTH_NAMES = [
@@ -67,7 +66,7 @@ function Legend() {
 // ── Main component ────────────────────────────────────────────────────────────
 
 export function TripCalendar({ trip }: TripCalendarProps) {
-  const dayMap = new Map<string, CalendarDay>();
+  const dayMap = new Map<string, TripDay>();
   for (const day of trip.days) {
     dayMap.set(day.date, day);
   }
@@ -136,13 +135,13 @@ export function TripCalendar({ trip }: TripCalendarProps) {
                       className="relative"
                     >
                       <Link
-                        href={`/trips/${trip.tripId}/day/${tripDay.dayNumber}`}
+                        href={`/trips/${trip.id}/day/${tripDay.dayNumber}`}
                         className={`aspect-square flex flex-col items-center justify-center rounded-lg ${cfg.bg} ${cfg.text} cursor-pointer relative hover:ring-2 ${cfg.ring} transition-shadow`}
                         title={tripDay.locationLabel ?? undefined}
                       >
                         <span className="font-bold text-sm leading-none">{day}</span>
                         <span className="text-[9px] mt-0.5 opacity-70 hidden sm:block font-medium">
-                          {normalizedType === 'OTHER_PARK' ? (tripDay.locationLabel ?? cfg.label) : cfg.label}
+                          {normalizedType === 'THEME_PARK' ? (tripDay.locationLabel ?? cfg.label) : cfg.label}
                         </span>
                         {tripDay.passRecommendation && (
                           <span className="absolute top-0.5 right-0.5 w-2 h-2 rounded-full bg-amber-400 shadow-sm shadow-amber-400/50" />

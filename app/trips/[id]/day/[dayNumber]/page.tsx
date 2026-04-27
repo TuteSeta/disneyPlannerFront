@@ -12,12 +12,11 @@ interface Props {
 }
 
 const headerGradients: Record<DayType, string> = {
-  DISNEY:     'from-blue-600/20    to-transparent',
-  UNIVERSAL:  'from-orange-600/20  to-transparent',
-  REST:       'from-emerald-600/20 to-transparent',
-  SHOPPING:   'from-fuchsia-600/20 to-transparent',
-  MIXED:      'from-violet-600/20  to-transparent',
-  OTHER_PARK: 'from-teal-600/20    to-transparent',
+  THEME_PARK:  'from-blue-600/20    to-transparent',
+  SIGHTSEEING: 'from-teal-600/20    to-transparent',
+  REST:        'from-emerald-600/20 to-transparent',
+  SHOPPING:    'from-fuchsia-600/20 to-transparent',
+  MIXED:       'from-violet-600/20  to-transparent',
 };
 
 export default async function TripDayDetailPage({ params }: Props) {
@@ -33,7 +32,7 @@ export default async function TripDayDetailPage({ params }: Props) {
         <h2 className="text-2xl font-bold text-white mb-3">Día no encontrado</h2>
         <Link
           href={`/trips/${id}`}
-          className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-colors"
+          className="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold transition-colors"
         >
           Volver al viaje
         </Link>
@@ -57,7 +56,7 @@ export default async function TripDayDetailPage({ params }: Props) {
         {/* Back */}
         <Link
           href={`/trips/${id}`}
-          className="inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-sky-400 transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver al calendario

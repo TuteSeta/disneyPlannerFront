@@ -22,7 +22,7 @@ export default async function TripSummaryPage({ params }: Props) {
         <p className="text-white/40 mb-8 text-center max-w-sm">
           Es posible que el viaje haya sido eliminado o el ID sea incorrecto.
         </p>
-        <Link href="/" className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-colors">
+        <Link href="/" className="px-6 py-3 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold transition-colors">
           Volver al inicio
         </Link>
       </main>
@@ -33,14 +33,14 @@ export default async function TripSummaryPage({ params }: Props) {
     <>
       {/* Ambient glow matching trip */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden>
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-indigo-600/10 blur-[120px]" />
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full bg-sky-500/8 blur-[120px]" />
       </div>
 
       <main className="max-w-5xl mx-auto px-6 pt-28 pb-24 w-full">
         {/* Back */}
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-sky-400 transition-colors mb-8"
         >
           <ArrowLeft className="w-4 h-4" />
           Inicio

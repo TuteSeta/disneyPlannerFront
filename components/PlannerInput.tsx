@@ -6,9 +6,9 @@ import { generateTrip } from '../lib/api';
 import { SendHorizontal, Sparkles } from 'lucide-react';
 
 const LOADING_MESSAGES = [
-  'Analizando fechas y parques...',
-  'Calculando tiempos de espera...',
-  'Distribuyendo días por parque...',
+  'Analizando tu descripción...',
+  'Consultando destinos y atracciones...',
+  'Distribuyendo días por actividad...',
   'Armando el itinerario perfecto...',
   'Generando actividades y consejos...',
   'Casi listo...',
@@ -48,24 +48,24 @@ export function PlannerInput() {
   if (isLoading) {
     return (
       <div className="w-full max-w-2xl mx-auto">
-        <div className="relative overflow-hidden rounded-2xl border border-indigo-500/25 bg-indigo-500/5 p-12 text-center">
+        <div className="relative overflow-hidden rounded-2xl border border-sky-500/25 bg-sky-500/5 p-12 text-center">
           {/* Animated gradient bg */}
           <div
             className="absolute inset-0 opacity-30 animate-gradient-pan"
             style={{
-              background: 'linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2), rgba(236,72,153,0.2), rgba(59,130,246,0.2))',
+              background: 'linear-gradient(135deg, rgba(14,165,233,0.2), rgba(6,182,212,0.2), rgba(20,184,166,0.2), rgba(14,165,233,0.2))',
               backgroundSize: '300% auto',
             }}
           />
           <div className="relative z-10 flex flex-col items-center">
             {/* Spinner */}
             <div className="relative w-16 h-16 mb-8">
-              <div className="absolute inset-0 rounded-full border-2 border-indigo-500/20 border-t-indigo-400 animate-spin" />
+              <div className="absolute inset-0 rounded-full border-2 border-sky-500/20 border-t-sky-400 animate-spin" />
               <div
-                className="absolute inset-2 rounded-full border-2 border-violet-500/20 border-t-violet-400 animate-spin"
+                className="absolute inset-2 rounded-full border-2 border-cyan-500/20 border-t-cyan-400 animate-spin"
                 style={{ animationDirection: 'reverse', animationDuration: '1.4s' }}
               />
-              <Sparkles className="absolute inset-0 m-auto w-5 h-5 text-indigo-300" />
+              <Sparkles className="absolute inset-0 m-auto w-5 h-5 text-sky-300" />
             </div>
             <p className="text-white font-bold text-xl mb-3">Armando tu viaje...</p>
             <p className="text-white/40 text-sm transition-all duration-500">
@@ -82,13 +82,13 @@ export function PlannerInput() {
     <div className="w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className="group relative">
         {/* Glow border on focus */}
-        <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 opacity-0 group-focus-within:opacity-40 transition-opacity duration-500 blur-sm pointer-events-none" />
+        <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-sky-500 via-cyan-500 to-teal-500 opacity-0 group-focus-within:opacity-40 transition-opacity duration-500 blur-sm pointer-events-none" />
 
-        <div className="relative border border-white/10 group-focus-within:border-indigo-500/50 rounded-2xl bg-white/[0.04] backdrop-blur-sm transition-colors duration-300 overflow-hidden">
+        <div className="relative border border-white/10 group-focus-within:border-sky-500/50 rounded-2xl bg-white/[0.04] backdrop-blur-sm transition-colors duration-300 overflow-hidden">
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder='Ej: "Somos 11, vamos del 22 dic al 7 ene, queremos Disney, Universal, un día de shopping, evitar filas largas..."'
+            placeholder='Ej: "7 días en Tokio con 2 adultos y 1 nena de 8 años, quiero mezclar templos, gastronomía y un parque temático..."'
             className="w-full bg-transparent px-6 pt-5 pb-16 text-[15px] text-white/90 placeholder-white/20 outline-none resize-none h-36 font-medium leading-relaxed"
             disabled={isLoading}
           />
@@ -102,7 +102,7 @@ export function PlannerInput() {
             <button
               type="submit"
               disabled={!description.trim()}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold text-sm shadow-lg shadow-blue-500/20 hover:shadow-blue-500/35 hover:from-blue-400 hover:to-indigo-500 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:shadow-none"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-cyan-600 text-white font-semibold text-sm shadow-lg shadow-sky-500/20 hover:shadow-sky-500/35 hover:from-sky-400 hover:to-cyan-500 transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:shadow-none"
             >
               <SendHorizontal className="w-4 h-4" />
               Planificar

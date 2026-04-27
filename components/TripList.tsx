@@ -46,10 +46,10 @@ export function TripList({ initialTrips }: TripListProps) {
           <Link
             key={trip.id}
             href={`/trips/${trip.id}`}
-            className="group relative flex flex-col bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.07] hover:border-indigo-500/30 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5"
+            className="group relative flex flex-col bg-white/[0.04] hover:bg-white/[0.07] border border-white/[0.07] hover:border-sky-500/30 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5"
           >
             {/* Color stripe */}
-            <div className="h-[2px] w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-500 opacity-60 group-hover:opacity-100 transition-opacity" />
+            <div className="h-[2px] w-full bg-gradient-to-r from-sky-400 via-cyan-400 to-teal-400 opacity-60 group-hover:opacity-100 transition-opacity" />
 
             <div className="p-5 flex flex-col flex-1">
               <div className="flex items-start justify-between gap-2 mb-3">
@@ -75,7 +75,7 @@ export function TripList({ initialTrips }: TripListProps) {
                 <span>{formatDate(trip.startDate)} — {formatDate(trip.endDate)}</span>
               </div>
 
-              <div className="mt-auto flex items-center gap-1 text-indigo-400/80 text-sm font-medium group-hover:text-indigo-300 transition-colors">
+              <div className="mt-auto flex items-center gap-1 text-sky-400/80 text-sm font-medium group-hover:text-sky-300 transition-colors">
                 Ver calendario
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </div>
